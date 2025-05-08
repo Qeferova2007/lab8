@@ -1,0 +1,27 @@
+import math
+
+def f(x):
+    return (math.exp(x) - 1) / (x - 1)
+
+def bisection(a, b, eps=1e-5):
+    if f(a) * f(b) > 0:
+        print("Bu intervalda kök yoxdur.")
+        return None
+
+    while abs(b - a) > eps:
+        c = (a + b) / 2
+        if f(c) == 0:
+            return c
+        elif f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+
+    return (a + b) / 2
+
+a = 0.5
+b = 1.0
+
+root = bisection(a, b)
+if root is not None:
+    print(f"Təqribi kök: x = {root:.5f}")
